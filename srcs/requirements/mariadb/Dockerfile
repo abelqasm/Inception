@@ -1,12 +1,11 @@
-FROM debian:buster-slim
+FROM debian:buster
 
 RUN apt-get update && apt-get install -y \
        mariadb-server \
-       mariadb-client \
-       vim \
-       curl \
-       sudo
+       curl   
 
-EXPOSE 3306
+COPY tools/config.sh .
 
-# CMD ["systemctl", "start", "mariadb"]
+RUN chmod +x config.sh && ./config.sh
+
+CMD ["mysqld", "--bind-address=0.0.0.0"]

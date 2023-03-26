@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: ./requirements/nginx
+    depends_on:
+      - wordpress
+      - mariadb
+    ports:
+      - 80:80
+    volumes:
+      - wordpressVolume:/var/www/html
+    restart: always
+
+  mariadb:
+    build: ./requirements/mariadb
+    environment:
+      MYSQL_DATABASE: wp
+      MYSQL_USER: wp
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - mariadbVolume:/var/lib/mysql
+    restart: always
+
+  wordpress:
+    build: ./requirements/wordpress
+    depends_on:
+      - mariadb
+    environment:
+      WORDPRESS_DB_PASSWORD: test
+    volumes:
+      - wordpressVolume:/var/www/html
+    restart: always
+
+volumes:
+  mariadbVolume: 
+  wordpressVolume: 
