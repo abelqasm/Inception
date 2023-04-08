@@ -36,7 +36,6 @@ services:
       - .env
     volumes:
       - wordpressVolume:/var/www/html
-      - mariadbVolume:/var/lib/mysql
     restart: always
 
 volumes:
