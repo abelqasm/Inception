@@ -7,9 +7,11 @@ services:
     depends_on:
       - wordpress
     ports:
-      - 80:80
+      - 443:443
     volumes:
       - wordpressVolume:/var/www/html
+    networks:
+      - inception
     restart: always
 
   mariadb:
@@ -25,6 +27,8 @@ services:
       - .env
     volumes:
       - mariadbVolume:/var/lib/mysql
+    networks:
+      - inception
     restart: always
 
   wordpress:
@@ -36,8 +40,24 @@ services:
       - .env
     volumes:
       - wordpressVolume:/var/www/html
+    networks:
+      - inception
     restart: always
 
 volumes:
-  mariadbVolume: 
-  wordpressVolume: 
+  mariadbVolume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/abelqasm/data
+  wordpressVolume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/abelqasm/data
+
+networks:
+  inception:
+    driver: bridge

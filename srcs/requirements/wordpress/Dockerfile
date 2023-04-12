@@ -1,16 +1,16 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install -y \
-    mariadb-client \
-    php7.3 \
-    php7.3-cli \
-    php7.3-mysql \
-    php7.3-curl \
-    php7.3-gd \
-    php7.3-mbstring \
-    php7.3-xml \
-    php7.3-fpm \
-    curl
+        mariadb-client \
+        php7.3 \
+        php7.3-cli \
+        php7.3-mysql \
+        php7.3-curl \
+        php7.3-gd \
+        php7.3-mbstring \
+        php7.3-xml \
+        php7.3-fpm \
+        curl
 
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar

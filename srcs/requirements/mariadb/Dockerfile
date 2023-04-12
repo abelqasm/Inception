@@ -1,8 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install -y \
-       mariadb-server \
-       curl   
+       mariadb-server 
 
 ARG DB_NAME DB_USER DB_USER_PW DB_ROOT_PW
 
