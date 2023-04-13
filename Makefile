@@ -1,6 +1,6 @@
 up:
 	cd ./srcs && docker-compose up
-dowm:
+down:
 	cd ./srcs && docker-compose down
 build:
 	cd ./srcs && docker-compose build
